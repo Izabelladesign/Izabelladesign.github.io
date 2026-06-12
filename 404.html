@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 · drifted off course</title>
+<style>
+  :root {
+    --bg: #05070d; --ink: #c8d3e6; --dim: #5d6b85; --faint: #2c3650;
+    --star: #8fd3ff; --comet: #ffc46b; --prompt: #7ee08a;
+    --mono: ui-monospace, "Cascadia Code", "JetBrains Mono", "Fira Code", Menlo, Consolas, "Liberation Mono", monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink); font-family: var(--mono);
+    min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    text-align: center; overflow: hidden; padding: 20px;
+  }
+  .twinkle {
+    position: fixed; color: var(--star); user-select: none; pointer-events: none;
+    animation: tw var(--dur, 4s) ease-in-out var(--delay, 0s) infinite; opacity: 0.2;
+  }
+  @keyframes tw { 0%,100% { opacity: 0.1; } 50% { opacity: 0.7; } }
+  @media (prefers-reduced-motion: reduce) {
+    .twinkle { animation: none; opacity: 0.4; }
+    .astro { animation: none !important; }
+  }
+  .astro {
+    color: var(--dim); font-size: 13px; line-height: 1.25;
+    display: inline-block; animation: drift 6s ease-in-out infinite;
+  }
+  @keyframes drift {
+    0%, 100% { transform: translateY(0) rotate(-4deg); }
+    50%      { transform: translateY(-16px) rotate(4deg); }
+  }
+  h1 { color: var(--star); font-size: 20px; font-weight: normal; margin-top: 24px; }
+  p { color: var(--dim); margin-top: 10px; font-size: 14px; }
+  .code { color: var(--comet); }
+  a.home {
+    display: inline-block; margin-top: 26px; color: var(--comet);
+    text-decoration: none; border: 1px solid var(--faint); padding: 8px 18px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  a.home::before { content: ">> "; color: var(--faint); }
+  a.home:hover { color: var(--star); border-color: var(--star); }
+</style>
+</head>
+<body>
+<div>
+  <pre class="astro" aria-hidden="true">
+         _____
+        /     \
+       | [o.o] |
+        \_____/
+       /|     |\
+      o |     | o
+        |_____|
+        _|   |_
+       (__) (__)
+
+   ·  tether: lost  ·</pre>
+
+  <h1>err <span class="code">404</span>: you've drifted off course</h1>
+  <p>this sector of space is empty. the page you're looking for<br>
+     was never built, got renamed, or floated away.</p>
+
+  <a class="home" href="/">return to starbase</a>
+</div>
+
+<script>
+  const chars = [".", "·", "+", "*", "✦"];
+  for (let i = 0; i < 70; i++) {
+    const s = document.createElement("span");
+    s.className = "twinkle";
+    s.textContent = chars[Math.floor(Math.random() * chars.length)];
+    s.style.left = Math.random() * 100 + "vw";
+    s.style.top = Math.random() * 100 + "vh";
+    s.style.fontSize = (8 + Math.random() * 8) + "px";
+    s.style.setProperty("--dur", (2.5 + Math.random() * 5) + "s");
+    s.style.setProperty("--delay", (Math.random() * 6) + "s");
+    document.body.appendChild(s);
+  }
+</script>
+</body>
+</html>
